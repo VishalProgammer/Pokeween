@@ -7,6 +7,9 @@ function App() {
   const [scene, setScene] = useState('intro')
   const [emaDialogueIndex, setEmaDialogueIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [screen3ClickCount, setScreen3ClickCount] = useState(0)
+  const [choseEma, setChoseEma] = useState(false)
+  const [choseJone, setChoseJone] = useState(false)
 
   const handleStartGame = () => {
     setGameStarted(true)
@@ -32,10 +35,16 @@ function App() {
   const handleChoice = (choice) => {
     console.log('User chose:', choice)
     if (choice === 'ema') {
+      setChoseEma(true)
       setScene('ema')
       setEmaDialogueIndex(0)
+    } else if (choice === 'jone') {
+      setChoseJone(true)
+      // Handle Jone scene here
+    } else if (choice === 'adventure') {
+      setScene('screen3')
+      setScreen3ClickCount(0)
     }
-    // Handle other choices here
   }
 
   const dialogues = [
@@ -59,13 +68,31 @@ function App() {
 
   // Screen 3 - Night scene
   if (scene === 'screen3') {
+    const handleScreen3Next = () => {
+      if (screen3ClickCount < 2) {
+        setScreen3ClickCount(screen3ClickCount + 1)
+      }
+      // Add more dialogue progression here if needed
+    }
+
+    let sceneClass = 'screen3-scene'
+    let dialogueText = "I love night time... so peaceful. Night shifts are better than day ones after all!!"
+    
+    if (screen3ClickCount === 1) {
+      sceneClass = 'screen3b-scene'
+      dialogueText = "What was that?!"
+    } else if (screen3ClickCount >= 2) {
+      sceneClass = 'screen3c-scene'
+      dialogueText = "Even Pokies got scared of that sound, I need to check it out!"
+    }
+
     return (
-      <div className="game-screen screen3-scene">
+      <div className={`game-screen ${sceneClass}`}>
         <div className="center-dialogue-container">
           <div className="dialogue-box">
             <p className="character-name red">Me</p>
-            <p className="dialogue-text">I love night time... so peaceful. Night shifts are better than day ones after all!!</p>
-            <button className="next-button">
+            <p className="dialogue-text">{dialogueText}</p>
+            <button className="next-button" onClick={handleScreen3Next}>
               →
             </button>
           </div>
