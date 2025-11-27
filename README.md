@@ -2,5 +2,6 @@ This is a small game made entire by the power of AI, all code and visuals are AI
 
 <img width="1870" height="921" alt="image" src="https://github.com/user-attachments/assets/c459902e-052a-4ac9-a879-34d6efe1a9de" />
 
-Code and programming: Kiro
+Code and programming: Kiro\n
+
 Visuals generation: Gemini Nano Banana Pro
