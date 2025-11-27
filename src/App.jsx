@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -24,16 +24,106 @@ function App() {
   const [itemMessage, setItemMessage] = useState('')
   const [swordShown, setSwordShown] = useState(false)
 
+  // Audio refs
+  const bgMusicRef = useRef(null)
+  const currentBgTrack = useRef('')
+  const [audioStarted, setAudioStarted] = useState(false)
+
+  // Function to play/change background music
+  const playBgMusic = (trackName) => {
+    if (trackName === currentBgTrack.current) return
+
+    // Stop current track
+    if (bgMusicRef.current) {
+      bgMusicRef.current.pause()
+      bgMusicRef.current.currentTime = 0
+    }
+
+    // Play new track
+    if (trackName) {
+      bgMusicRef.current = new Audio(`/${trackName}`)
+      bgMusicRef.current.loop = true
+      bgMusicRef.current.volume = 0.5
+      bgMusicRef.current.play().catch(e => console.log('Audio play failed:', e))
+      currentBgTrack.current = trackName
+    } else {
+      currentBgTrack.current = ''
+    }
+  }
+
+  // Background music management - changes based on scene
+  useEffect(() => {
+    if (!audioStarted) return // Don't play until user has interacted
+
+    let trackToPlay = 'regular bg.mp3' // Default to regular bg
+
+    // Keep regular bg for intro, ema, and jone scenes
+    if (scene === 'intro' || scene === 'ema' || scene === 'jone') {
+      trackToPlay = 'regular bg.mp3'
+    } else if (scene === 'screen3' && screen3ClickCount === 0) {
+      trackToPlay = 'forest normal.mp3'
+    } else if (scene === 'screen3' && screen3ClickCount >= 1) {
+      trackToPlay = 'forest intense.mp3'
+    } else if (scene === 'screen4') {
+      // Keep forest intense until battle starts (screen4c)
+      if (screen4ClickCount >= 2) {
+        trackToPlay = 'fight bg.mp3'
+      } else {
+        trackToPlay = 'forest intense.mp3'
+      }
+    } else if (scene === 'screen5') {
+      trackToPlay = '' // Stop music on victory
+    }
+
+    playBgMusic(trackToPlay)
+  }, [audioStarted, scene, screen3ClickCount, screen4ClickCount])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (bgMusicRef.current) {
+        bgMusicRef.current.pause()
+      }
+    }
+  }, [])
+
+  // Play click sound effect
+  const playClickSound = () => {
+    const clickSound = new Audio('/click.mp3')
+    clickSound.volume = 0.5
+    clickSound.play().catch(e => console.log('Audio play failed:', e))
+  }
+
+  // Play item taken sound effect
+  const playItemTakenSound = () => {
+    const itemSound = new Audio('/item given.mp3')
+    itemSound.volume = 0.7
+    itemSound.play().catch(e => console.log('Audio play failed:', e))
+  }
+
+  // Play item used sound effect
+  const playItemUsedSound = () => {
+    const itemSound = new Audio('/item used.mp3')
+    itemSound.volume = 0.7
+    itemSound.play().catch(e => console.log('Audio play failed:', e))
+  }
+
   const handleStartGame = () => {
+    playClickSound()
+    setAudioStarted(true) // Start audio on first user interaction
     setGameStarted(true)
   }
 
   const handleNextDialogue = () => {
+    playClickSound()
     setDialogueIndex(dialogueIndex + 1)
   }
 
   const handleEmaNextDialogue = () => {
+    playClickSound()
     if (emaDialogueIndex === 7) {
+      // Play item taken sound
+      playItemTakenSound()
       // Trigger transition to screen3
       setIsTransitioning(true)
       setTimeout(() => {
@@ -46,7 +136,10 @@ function App() {
   }
 
   const handleJoneNextDialogue = () => {
+    playClickSound()
     if (joneDialogueIndex === 7) {
+      // Play item taken sound
+      playItemTakenSound()
       // Trigger transition to screen3
       setIsTransitioning(true)
       setTimeout(() => {
@@ -59,6 +152,7 @@ function App() {
   }
 
   const handleChoice = (choice) => {
+    playClickSound()
     console.log('User chose:', choice)
     if (choice === 'ema') {
       setChoseEma(true)
@@ -108,6 +202,7 @@ function App() {
   // Screen 4
   if (scene === 'screen4') {
     const handleScreen4Next = () => {
+      playClickSound()
       if (screen4ClickCount < 2) {
         setScreen4ClickCount(screen4ClickCount + 1)
       }
@@ -183,6 +278,8 @@ function App() {
         if (newPlayerHP <= 0 && choseEma && !heartUsed) {
           // Use heart crystal to revive
           setTimeout(() => {
+            // Play item used sound
+            playItemUsedSound()
             setShowItemAnimation(true)
             setItemAnimationType('heart')
             setItemMessage('Crystal Heart had healed your Pokie!')
@@ -210,6 +307,8 @@ function App() {
       if (choseJone && !swordShown && !showItemAnimation) {
         setSwordShown(true)
         setTimeout(() => {
+          // Play item used sound
+          playItemUsedSound()
           setShowItemAnimation(true)
           setItemAnimationType('sword')
           setItemMessage("Jon's crystal sword has increased your Pokie's damage greatly!")
@@ -313,6 +412,7 @@ function App() {
   // Screen 3 - Night scene
   if (scene === 'screen3') {
     const handleScreen3Next = () => {
+      playClickSound()
       if (screen3ClickCount < 2) {
         setScreen3ClickCount(screen3ClickCount + 1)
       } else {

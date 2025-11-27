@@ -1087,3 +1087,163 @@ Top right next button for screen 4 */
     font-size: 5vw;
   }
 }
+
+/* Item 
+animation overlay */
+.item-animation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.item-animation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+}
+
+.animated-item {
+  width: 20vw;
+  max-width: 200px;
+  height: auto;
+  animation: itemPulse 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 2vh rgba(255, 255, 255, 0.8));
+}
+
+@keyframes itemPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.item-animation-text {
+  font-size: 2.5vw;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0.3vw 0.3vw 0.6vw rgba(0, 0, 0, 0.8);
+  max-width: 80vw;
+  animation: textFadeIn 0.5s ease-in 0.3s both;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2vh);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Victory screen */
+.screen5-scene {
+  background-image: url('/d-bg5.png');
+  background-position: center;
+}
+
+@media (max-width: 900px) {
+  .screen5-scene {
+    background-image: url('/m-bg5.png');
+  }
+}
+
+.victory-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vh;
+  animation: victoryAppear 1s ease-out;
+}
+
+@keyframes victoryAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.victory-text {
+  font-size: 8vw;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow:
+    0.4vw 0.4vw 0px #000,
+    -0.2vw -0.2vw 0px #000,
+    0.2vw -0.2vw 0px #000,
+    -0.2vw 0.2vw 0px #000,
+    0px 0.6vw 1.2vw rgba(0, 0, 0, 0.8);
+  animation: victoryPulse 2s ease-in-out infinite;
+}
+
+@keyframes victoryPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.victory-message {
+  font-size: 2.5vw;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0.3vw 0.3vw 0.6vw rgba(0, 0, 0, 0.8);
+  text-align: center;
+  max-width: 80vw;
+}
+
+@media (max-width: 900px) {
+  .animated-item {
+    width: 40vw;
+  }
+
+  .item-animation-text {
+    font-size: 5vw;
+  }
+
+  .victory-text {
+    font-size: 15vw;
+  }
+
+  .victory-message {
+    font-size: 5vw;
+  }
+}
