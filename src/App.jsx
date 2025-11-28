@@ -185,7 +185,7 @@ function App() {
     )
   }
 
-  const characterImage = dialogueIndex === 2 ? "/c1-think.png" : "/c1-happy.png"
+  const characterImage = dialogueIndex === 2 ? "/c1-think-min.png" : "/c1-happy-min.png"
 
   // Screen 5 - Victory screen
   if (scene === 'screen5') {
@@ -324,7 +324,7 @@ function App() {
             <div className="item-animation-overlay">
               <div className="item-animation-content">
                 <img
-                  src={itemAnimationType === 'heart' ? '/heart.png' : '/sword.png'}
+                  src={itemAnimationType === 'heart' ? '/heart-min.png' : '/sword-min.png'}
                   alt="Item"
                   className="animated-item"
                 />
@@ -337,7 +337,7 @@ function App() {
               {/* Enemy side */}
               <div className="enemy-side">
                 <div className="trainer-info">
-                  <img src="/v-angry.png" alt="Enemy Trainer" className="trainer-sprite" />
+                  <img src="/v-angry-min.png" alt="Enemy Trainer" className="trainer-sprite" />
                   <span className="trainer-name">Villain</span>
                 </div>
                 <div className="pokemon-container enemy">
@@ -348,14 +348,14 @@ function App() {
                     </div>
                     <div className="hp-text">{enemyHP}/100 HP</div>
                   </div>
-                  <img src="/snake.png" alt="Snake" className="pokemon-sprite enemy-pokemon" />
+                  <img src="/snake-min.png" alt="Snake" className="pokemon-sprite enemy-pokemon" />
                 </div>
               </div>
 
               {/* Player side */}
               <div className="player-side">
                 <div className="pokemon-container player">
-                  <img src="/rat.png" alt="Rat" className="pokemon-sprite player-pokemon" />
+                  <img src="/rat-min.png" alt="Rat" className="pokemon-sprite player-pokemon" />
                   <div className="hp-bar-container">
                     <div className="pokemon-name">Rat</div>
                     <div className="hp-bar">
@@ -365,7 +365,7 @@ function App() {
                   </div>
                 </div>
                 <div className="trainer-info">
-                  <img src="/h-angry.png" alt="Player Trainer" className="trainer-sprite" />
+                  <img src="/h-angry-min.png" alt="Player Trainer" className="trainer-sprite" />
                   <span className="trainer-name">You</span>
                 </div>
               </div>
@@ -449,51 +449,51 @@ function App() {
 
   // Jone scene after choosing option 2
   if (scene === 'jone') {
-    let leftCharacter = "/c1-smile.png"
-    let rightCharacter = "/c3-think.png"
+    let leftCharacter = "/c1-smile-min.png"
+    let rightCharacter = "/c3-think-min.png"
     let speakerName = "You"
     let nameColor = ""
     let dialogueText = "Hey Jone!! You there?"
     let showItemReceived = false
 
     if (joneDialogueIndex === 1) {
-      rightCharacter = "/c3-shock.png"
+      rightCharacter = "/c3-shock-min.png"
       speakerName = "Jone"
       nameColor = "green"
       dialogueText = "Hey!! Alex!! When did you get here?"
     } else if (joneDialogueIndex === 2) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c3-shock.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c3-shock-min.png"
       speakerName = "Me"
       nameColor = "red"
       dialogueText = "Just now, you know, today I got my first Pokie from Dr.Wattson!!"
     } else if (joneDialogueIndex === 3) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c3-confident.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c3-confident-min.png"
       speakerName = "Jone"
       nameColor = "green"
       dialogueText = "Hey, Congratulations Alex! I am happy for you!"
     } else if (joneDialogueIndex === 4) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c3-confident.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c3-confident-min.png"
       speakerName = "Jone"
       nameColor = "green"
       dialogueText = "So, ready to be a Pokie Protector?"
     } else if (joneDialogueIndex === 5) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c3-confident.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c3-confident-min.png"
       speakerName = "Me"
       nameColor = "red"
       dialogueText = "Yes! I can't wait to start my new life!"
     } else if (joneDialogueIndex === 6) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c3-smile.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c3-smile-min.png"
       speakerName = "Jone"
       nameColor = "green"
       dialogueText = "Calm down, it won't be easy, so take this. It will help you!"
     } else if (joneDialogueIndex === 7) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c3-smile.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c3-smile-min.png"
       speakerName = ""
       nameColor = ""
       dialogueText = "Jone gave you a Sword..."
@@ -510,7 +510,7 @@ function App() {
           <div className="dialogue-box-wrapper">
             {showItemReceived && (
               <div className="item-received">
-                <img src="/sword.png" alt="Sword" className="item-image" />
+                <img src="/sword-min.png" alt="Sword" className="item-image" />
               </div>
             )}
             <div className="dialogue-box">
@@ -532,51 +532,51 @@ function App() {
 
   // Ema scene after choosing option 1
   if (scene === 'ema') {
-    let leftCharacter = "/c1-smile.png"
-    let rightCharacter = "/c2-think.png"
+    let leftCharacter = "/c1-smile-min.png"
+    let rightCharacter = "/c2-think-min.png"
     let speakerName = "You"
     let nameColor = ""
     let dialogueText = "Hey Ema!! You there?"
     let showItemReceived = false
 
     if (emaDialogueIndex === 1) {
-      rightCharacter = "/c2-shock.png"
+      rightCharacter = "/c2-shock-min.png"
       speakerName = "Ema"
       nameColor = "pink"
       dialogueText = "Hey!! Alex!! When did you get here?"
     } else if (emaDialogueIndex === 2) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c2-shock.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c2-shock-min.png"
       speakerName = "Me"
       nameColor = "red"
       dialogueText = "Just now, you know, today I got my first Pokie from Dr.Wattson!!"
     } else if (emaDialogueIndex === 3) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c2-confident.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c2-confident-min.png"
       speakerName = "Ema"
       nameColor = "pink"
       dialogueText = "Hey, Congratulations Alex! I am happy for you!"
     } else if (emaDialogueIndex === 4) {
-      leftCharacter = "/c1-talk1.png"
-      rightCharacter = "/c2-confident.png"
+      leftCharacter = "/c1-talk1-min.png"
+      rightCharacter = "/c2-confident-min.png"
       speakerName = "Ema"
       nameColor = "pink"
       dialogueText = "So, ready to be a Pokie Protector?"
     } else if (emaDialogueIndex === 5) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c2-confident.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c2-confident-min.png"
       speakerName = "Me"
       nameColor = "red"
       dialogueText = "Yes! I can't wait to start my new life!"
     } else if (emaDialogueIndex === 6) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c2-smile.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c2-smile-min.png"
       speakerName = "Ema"
       nameColor = "pink"
       dialogueText = "Calm down, it won't be easy, so take this. It will help you!"
     } else if (emaDialogueIndex === 7) {
-      leftCharacter = "/c1-exited.png"
-      rightCharacter = "/c2-smile.png"
+      leftCharacter = "/c1-exited-min.png"
+      rightCharacter = "/c2-smile-min.png"
       speakerName = ""
       nameColor = ""
       dialogueText = "Ema gave you a Heart crystal..."
@@ -593,7 +593,7 @@ function App() {
           <div className="dialogue-box-wrapper">
             {showItemReceived && (
               <div className="item-received">
-                <img src="/heart.png" alt="Heart Crystal" className="item-image" />
+                <img src="/heart-min.png" alt="Heart Crystal" className="item-image" />
               </div>
             )}
             <div className="dialogue-box">
