@@ -8,7 +8,7 @@
 .entry-screen {
   width: 100%;
   height: 100vh;
-  background-image: url('/d-entry.png');
+  background-image: url('/d-entry-min.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@
 
 @media (max-width: 900px) {
   .entry-screen {
-    background-image: url('/m-entry.png');
+    background-image: url('/m-entry-min.png');
   }
 }
 
@@ -89,7 +89,7 @@
 .game-screen {
   width: 100%;
   height: 100vh;
-  background-image: url('/bg1.png');
+  background-image: url('/bg1-min.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -332,7 +332,7 @@
 
 /* Ema scene with bg2 background */
 .ema-scene {
-  background-image: url('/bg2.png');
+  background-image: url('/bg2-min.png');
 }
 
 .two-character-scene {
@@ -422,37 +422,37 @@
 
 /* Screen 3 - Night scene with bg3 background */
 .screen3-scene {
-  background-image: url('/d-bg3.png');
+  background-image: url('/d-bg3-min.png');
   background-position: center 35%;
 }
 
 @media (max-width: 900px) {
   .screen3-scene {
-    background-image: url('/m-bg3.png');
+    background-image: url('/m-bg3-min.png');
   }
 }
 
 /* Screen 3b - After first click */
 .screen3b-scene {
-  background-image: url('/d-bg3b.png');
+  background-image: url('/d-bg3b-min.png');
   background-position: center 35%;
 }
 
 @media (max-width: 900px) {
   .screen3b-scene {
-    background-image: url('/m-bg3b.png');
+    background-image: url('/m-bg3b-min.png');
   }
 }
 
 /* Screen 3c - After second click */
 .screen3c-scene {
-  background-image: url('/d-bg3c.png');
+  background-image: url('/d-bg3c-min.png');
   background-position: center 35%;
 }
 
 @media (max-width: 900px) {
   .screen3c-scene {
-    background-image: url('/m-bg3c.png');
+    background-image: url('/m-bg3c-min.png');
   }
 
   .game-title {
@@ -527,13 +527,13 @@
 /* S
 creen 4 */
 .screen4-scene {
-  background-image: url('/d-bg4a.png');
+  background-image: url('/d-bg4a-min.png');
   background-position: center 35%;
 }
 
 @media (max-width: 900px) {
   .screen4-scene {
-    background-image: url('/m-bg4a.png');
+    background-image: url('/m-bg4a-min.png');
   }
 }
 
@@ -609,19 +609,19 @@ Top right next button for screen 4 */
 /*
  Screen 4b - After first click */
 .screen4b-scene {
-  background-image: url('/d-bg4b.png');
+  background-image: url('/d-bg4b-min.png');
   background-position: center 35%;
 }
 
 @media (max-width: 900px) {
   .screen4b-scene {
-    background-image: url('/m-bg4b.png');
+    background-image: url('/m-bg4b-min.png');
   }
 }
 
 /* Screen 4c - Battle scene */
 .screen4c-scene {
-  background-image: url('/d-bg4c.png');
+  background-image: url('/d-bg4c-min.png');
   background-position: center;
   overflow: hidden;
   position: relative;
@@ -641,7 +641,7 @@ Top right next button for screen 4 */
 
 @media (max-width: 900px) {
   .screen4c-scene {
-    background-image: url('/m-bg4c.png');
+    background-image: url('/m-bg4c-min.png');
   }
 }
 
@@ -1009,13 +1009,13 @@ Top right next button for screen 4 */
 /*
  Screen 5 - Victory screen */
 .screen5-scene {
-  background-image: url('/d-bg5.png');
+  background-image: url('/d-bg5-min.png');
   background-position: center;
 }
 
 @media (max-width: 900px) {
   .screen5-scene {
-    background-image: url('/m-bg5.png');
+    background-image: url('/m-bg5-min.png');
   }
 }
 
@@ -1165,13 +1165,13 @@ animation overlay */
 
 /* Victory screen */
 .screen5-scene {
-  background-image: url('/d-bg5.png');
+  background-image: url('/d-bg5-min.png');
   background-position: center;
 }
 
 @media (max-width: 900px) {
   .screen5-scene {
-    background-image: url('/m-bg5.png');
+    background-image: url('/m-bg5-min.png');
   }
 }
 
