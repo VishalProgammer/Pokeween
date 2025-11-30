@@ -483,7 +483,7 @@
     max-width: 60px;
     max-height: 60px;
     bottom: -3vh;
-    font-size: 6vw;
+    font-size: 4vw;
   }
 
 
@@ -1244,6 +1244,493 @@ animation overlay */
   }
 
   .victory-message {
+    font-size: 5vw;
+  }
+}
+
+/*
+ Arena Mode Styles */
+.entry-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.arena-button {
+  background: linear-gradient(180deg, #9b59b6 0%, #6c3483 100%) !important;
+  box-shadow: 0 0.5vh 0 #4a235a, 0 0.8vh 1.2vh rgba(0, 0, 0, 0.5) !important;
+}
+
+.arena-button:hover {
+  background: linear-gradient(180deg, #af7ac5 0%, #8e44ad 100%) !important;
+}
+
+.arena-select-screen {
+  background-image: url('/d-bg4c-min.png');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 900px) {
+  .arena-select-screen {
+    background-image: url('/m-bg4c-min.png');
+  }
+}
+
+.arena-container {
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 2vw;
+  padding: 3vh 4vw;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.arena-title {
+  color: #ffd700;
+  font-size: 3vw;
+  margin-bottom: 3vh;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
+}
+
+/* Character Selection */
+.character-options {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  flex-wrap: wrap;
+}
+
+.char-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.3vw solid #fff;
+  border-radius: 1vw;
+  padding: 2vh 2vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+.char-option:hover {
+  background: rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  transform: scale(1.05);
+}
+
+.char-option img {
+  width: 12vw;
+  max-width: 150px;
+  height: auto;
+}
+
+.char-option span {
+  color: #fff;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+/* Element Toggle */
+.element-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1.5vw;
+  margin-bottom: 2vh;
+}
+
+.element-btn {
+  padding: 1vh 2vw;
+  font-size: 1.4vw;
+  font-weight: bold;
+  border: 0.2vw solid #fff;
+  border-radius: 0.8vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+.element-btn.fire {
+  background: linear-gradient(180deg, #ff6b35 0%, #c0392b 100%);
+}
+
+.element-btn.air {
+  background: linear-gradient(180deg, #87ceeb 0%, #5dade2 100%);
+}
+
+.element-btn.water {
+  background: linear-gradient(180deg, #4a90d9 0%, #2471a3 100%);
+}
+
+.element-btn.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 1.5vw rgba(255, 255, 255, 0.8);
+}
+
+.element-info {
+  color: #aaa;
+  font-size: 1.2vw;
+  margin-bottom: 2vh;
+}
+
+/* Pokemon Selection */
+.pokemon-options {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  flex-wrap: wrap;
+}
+
+.pokemon-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.3vw solid #fff;
+  border-radius: 1vw;
+  padding: 1.5vh 1.5vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh;
+}
+
+.pokemon-option:hover {
+  background: rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  transform: scale(1.08);
+}
+
+.pokemon-option img {
+  width: 8vw;
+  max-width: 100px;
+  height: auto;
+}
+
+.pokemon-option span {
+  color: #fff;
+  font-size: 1.2vw;
+  font-weight: bold;
+}
+
+/* Booster Selection */
+.booster-options {
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+  flex-wrap: wrap;
+}
+
+.booster-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.3vw solid #fff;
+  border-radius: 1.5vw;
+  padding: 2vh 3vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  max-width: 25vw;
+}
+
+.booster-option:hover {
+  background: rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  transform: scale(1.05);
+}
+
+.booster-option img {
+  width: 8vw;
+  max-width: 100px;
+  height: auto;
+}
+
+.booster-option span {
+  color: #ffd700;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+.booster-desc {
+  color: #ccc;
+  font-size: 1.1vw;
+  text-align: center;
+  margin: 0;
+}
+
+/* Difficulty Selection */
+.difficulty-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+}
+
+.difficulty-option {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.3vw solid #fff;
+  border-radius: 1vw;
+  padding: 2vh 4vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80%;
+  max-width: 500px;
+}
+
+.difficulty-option:hover {
+  transform: scale(1.03);
+}
+
+.difficulty-option.easy {
+  border-color: #2ecc71;
+}
+
+.difficulty-option.easy:hover {
+  background: rgba(46, 204, 113, 0.3);
+}
+
+.difficulty-option.hard {
+  border-color: #f39c12;
+}
+
+.difficulty-option.hard:hover {
+  background: rgba(243, 156, 18, 0.3);
+}
+
+.difficulty-option.veryhard {
+  border-color: #e74c3c;
+}
+
+.difficulty-option.veryhard:hover {
+  background: rgba(231, 76, 60, 0.3);
+}
+
+.diff-name {
+  color: #fff;
+  font-size: 2vw;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5vh;
+}
+
+.diff-desc {
+  color: #aaa;
+  font-size: 1.2vw;
+  margin: 0;
+}
+
+/* Arena Battle Scene */
+.arena-battle-scene {
+  background-image: url('/d-bg4c-min.png');
+}
+
+@media (max-width: 900px) {
+  .arena-battle-scene {
+    background-image: url('/m-bg4c-min.png');
+  }
+}
+
+.element-badge {
+  font-size: 0.8vw;
+  padding: 0.2vh 0.5vw;
+  border-radius: 0.3vw;
+  color: #fff;
+  text-transform: uppercase;
+  margin-left: 0.5vw;
+}
+
+/* Defeat Screen */
+.defeat-scene {
+  background-image: url('/d-bg4c-min.png');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 900px) {
+  .defeat-scene {
+    background-image: url('/m-bg4c-min.png');
+  }
+}
+
+.defeat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vh;
+  animation: fadeInUp 1s ease-out;
+}
+
+.defeat-text {
+  font-size: 8vw;
+  font-weight: bold;
+  color: #e74c3c;
+  text-shadow:
+    0.4vw 0.4vw 0px #000,
+    -0.2vw -0.2vw 0px #000,
+    0.2vw -0.2vw 0px #000,
+    -0.2vw 0.2vw 0px #000;
+  animation: defeatPulse 2s ease-in-out infinite;
+  margin: 0;
+}
+
+@keyframes defeatPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.defeat-message {
+  font-size: 2.5vw;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0.3vw 0.3vw 0.6vw rgba(0, 0, 0, 0.9);
+  text-align: center;
+  max-width: 80vw;
+  margin: 0;
+}
+
+.replay-button {
+  padding: 2vh 4vw;
+  font-size: 2vw;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);
+  border: 0.3vw solid #fff;
+  border-radius: 1vw;
+  cursor: pointer;
+  box-shadow: 0 0.5vh 0 #1a5276, 0 0.8vh 1.2vh rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  margin-top: 2vh;
+}
+
+.replay-button:hover {
+  background: linear-gradient(180deg, #5dade2 0%, #3498db 100%);
+  transform: translateY(-0.3vh);
+}
+
+.replay-button:active {
+  transform: translateY(0.2vh);
+}
+
+/* Mobile Arena Styles */
+@media (max-width: 900px) {
+  .arena-title {
+    font-size: 6vw;
+  }
+
+  .char-option img {
+    width: 25vw;
+  }
+
+  .char-option span {
+    font-size: 3.5vw;
+  }
+
+  .element-btn {
+    font-size: 3vw;
+    padding: 1.5vh 3vw;
+  }
+
+  .element-info {
+    font-size: 3vw;
+  }
+
+  .pokemon-option img {
+    width: 18vw;
+  }
+
+  .pokemon-option span {
+    font-size: 3vw;
+  }
+
+  .booster-option {
+    max-width: 80vw;
+    padding: 2vh 4vw;
+  }
+
+  .booster-option img {
+    width: 15vw;
+  }
+
+  .booster-option span {
+    font-size: 4vw;
+  }
+
+  .booster-desc {
+    font-size: 3vw;
+  }
+
+  .diff-name {
+    font-size: 5vw;
+  }
+
+  .diff-desc {
+    font-size: 3vw;
+  }
+
+  .element-badge {
+    font-size: 2.5vw;
+  }
+
+  .defeat-text {
+    font-size: 12vw;
+  }
+
+  .defeat-message {
+    font-size: 4vw;
+  }
+
+  .replay-button {
+    font-size: 4vw;
+  }
+}
+
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  top: 3vh;
+  left: 3vw;
+  padding: 1vh 2vw;
+  min-width: 45px;
+  min-height: 40px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  border: 0.3vw solid #fff;
+  border-radius: 0.8vw;
+  color: #fff;
+  font-size: 2vw;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0.5vh 0 #7b241c, 0 0.8vh 1.5vh rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #ec7063 0%, #e74c3c 100%);
+  transform: translateY(-0.3vh);
+}
+
+.back-button:active {
+  transform: translateY(0.2vh);
+  box-shadow: 0 0.2vh 0 #7b241c, 0 0.4vh 1vh rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 900px) {
+  .back-button {
     font-size: 5vw;
   }
 }
