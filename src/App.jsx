@@ -8,7 +8,7 @@ const ELEMENTS = {
   water: { strong: 'fire', weak: 'air', color: '#4a90d9' }
 }
 
-const POKEMONS = {
+const POKIES = {
   fire: [
     {
       id: 'fire1', name: 'Flamey', image: '/fire1.png', attacks: [
@@ -119,11 +119,11 @@ function App() {
   // Arena states
   const [arenaCharacter, setArenaCharacter] = useState(null)
   const [selectedElement, setSelectedElement] = useState('fire')
-  const [selectedPokemon, setSelectedPokemon] = useState(null)
+  const [selectedPokie, setSelectedPokie] = useState(null)
   const [selectedBooster, setSelectedBooster] = useState(null)
   const [difficulty, setDifficulty] = useState(null)
-  const [arenaStep, setArenaStep] = useState('character') // character, pokemon, booster, difficulty, battle
-  const [enemyPokemon, setEnemyPokemon] = useState(null)
+  const [arenaStep, setArenaStep] = useState('character') // character, pokie, booster, difficulty, battle
+  const [enemyPokie, setEnemyPokie] = useState(null)
   const [arenaBoosterUsed, setArenaBoosterUsed] = useState(false)
   const [arenaSwordShown, setArenaSwordShown] = useState(false)
 
@@ -223,11 +223,11 @@ function App() {
     }
     setArenaCharacter(null)
     setSelectedElement('fire')
-    setSelectedPokemon(null)
+    setSelectedPokie(null)
     setSelectedBooster(null)
     setDifficulty(null)
     setArenaStep('character')
-    setEnemyPokemon(null)
+    setEnemyPokie(null)
     setPlayerHP(100)
     setEnemyHP(100)
     setBattleLog('')
@@ -296,13 +296,13 @@ function App() {
   const handleArenaCharacterSelect = (char) => {
     playClickSound()
     setArenaCharacter(char)
-    setArenaStep('pokemon')
+    setArenaStep('pokie')
   }
 
-  // Arena pokemon selection
-  const handlePokemonSelect = (pokemon) => {
+  // Arena pokie selection
+  const handlePokieSelect = (pokie) => {
     playClickSound()
-    setSelectedPokemon(pokemon)
+    setSelectedPokie(pokie)
     setArenaStep('booster')
   }
 
@@ -329,10 +329,10 @@ function App() {
       enemyElement = ELEMENTS[playerElement].weak // Enemy is strong against player
     }
 
-    // Pick random enemy pokemon from that element
-    const enemyOptions = POKEMONS[enemyElement]
+    // Pick random enemy pokie from that element
+    const enemyOptions = POKIES[enemyElement]
     const randomEnemy = enemyOptions[Math.floor(Math.random() * enemyOptions.length)]
-    setEnemyPokemon({ ...randomEnemy, element: enemyElement })
+    setEnemyPokie({ ...randomEnemy, element: enemyElement })
 
     setPlayerHP(100)
     setEnemyHP(100)
@@ -424,9 +424,9 @@ function App() {
       )
     }
 
-    // Pokemon Selection
-    if (arenaStep === 'pokemon') {
-      const currentPokemons = POKEMONS[selectedElement]
+    // Pokie Selection
+    if (arenaStep === 'pokie') {
+      const currentPokies = POKIES[selectedElement]
       return (
         <div className="game-screen arena-select-screen">
           <button className="back-button" onClick={() => goBack('character')}>←</button>
@@ -445,11 +445,11 @@ function App() {
               {selectedElement === 'air' && <p>💨 Air is strong against Water, weak to Fire</p>}
               {selectedElement === 'water' && <p>💧 Water is strong against Fire, weak to Air</p>}
             </div>
-            <div className="pokemon-options">
-              {currentPokemons.map(pokemon => (
-                <div key={pokemon.id} className="pokemon-option" onClick={() => handlePokemonSelect({ ...pokemon, element: selectedElement })}>
-                  <img src={pokemon.image} alt={pokemon.name} />
-                  <span>{pokemon.name}</span>
+            <div className="pokie-options">
+              {currentPokies.map(pokie => (
+                <div key={pokie.id} className="pokie-option" onClick={() => handlePokieSelect({ ...pokie, element: selectedElement })}>
+                  <img src={pokie.image} alt={pokie.name} />
+                  <span>{pokie.name}</span>
                 </div>
               ))}
             </div>
@@ -462,7 +462,7 @@ function App() {
     if (arenaStep === 'booster') {
       return (
         <div className="game-screen arena-select-screen">
-          <button className="back-button" onClick={() => goBack('pokemon')}>←</button>
+          <button className="back-button" onClick={() => goBack('pokie')}>←</button>
           <div className="arena-container">
             <h2 className="arena-title">Choose Your Booster</h2>
             <div className="booster-options">
@@ -529,23 +529,23 @@ function App() {
         const damageGivenSound = new Audio('/damage given.mp3')
         damageGivenSound.play().catch(e => console.log('Audio play failed:', e))
 
-        const attack = selectedPokemon.attacks[attackIndex]
-        const damage = calculateDamage(attack.baseDamage, selectedPokemon.element, enemyPokemon.element, true)
+        const attack = selectedPokie.attacks[attackIndex]
+        const damage = calculateDamage(attack.baseDamage, selectedPokie.element, enemyPokie.element, true)
         const newEnemyHP = Math.max(0, enemyHP - damage)
         setEnemyHP(newEnemyHP)
 
         let effectiveness = ''
-        if (ELEMENTS[selectedPokemon.element].strong === enemyPokemon.element) {
+        if (ELEMENTS[selectedPokie.element].strong === enemyPokie.element) {
           effectiveness = " It's super effective!"
-        } else if (ELEMENTS[selectedPokemon.element].weak === enemyPokemon.element) {
+        } else if (ELEMENTS[selectedPokie.element].weak === enemyPokie.element) {
           effectiveness = " It's not very effective..."
         }
-        setBattleLog(`${selectedPokemon.name} used ${attack.name}! Dealt ${damage} damage!${effectiveness}`)
+        setBattleLog(`${selectedPokie.name} used ${attack.name}! Dealt ${damage} damage!${effectiveness}`)
         setIsPlayerTurn(false)
 
         if (newEnemyHP <= 0) {
           setTimeout(() => {
-            setBattleLog(`Victory! ${enemyPokemon.name} fainted!`)
+            setBattleLog(`Victory! ${enemyPokie.name} fainted!`)
             const wonSound = new Audio('/won.mp3')
             wonSound.play().catch(e => console.log('Audio play failed:', e))
             setTimeout(() => setScene('screen5'), 2000)
@@ -558,18 +558,18 @@ function App() {
           const damageTakenSound = new Audio('/damage taken.mp3')
           damageTakenSound.play().catch(e => console.log('Audio play failed:', e))
 
-          const enemyAttack = enemyPokemon.attacks[Math.floor(Math.random() * 3)]
-          const enemyDamage = calculateDamage(enemyAttack.baseDamage, enemyPokemon.element, selectedPokemon.element, false)
+          const enemyAttack = enemyPokie.attacks[Math.floor(Math.random() * 3)]
+          const enemyDamage = calculateDamage(enemyAttack.baseDamage, enemyPokie.element, selectedPokie.element, false)
           const newPlayerHP = Math.max(0, playerHP - enemyDamage)
           setPlayerHP(newPlayerHP)
 
           let enemyEffectiveness = ''
-          if (ELEMENTS[enemyPokemon.element].strong === selectedPokemon.element) {
+          if (ELEMENTS[enemyPokie.element].strong === selectedPokie.element) {
             enemyEffectiveness = " It's super effective!"
-          } else if (ELEMENTS[enemyPokemon.element].weak === selectedPokemon.element) {
+          } else if (ELEMENTS[enemyPokie.element].weak === selectedPokie.element) {
             enemyEffectiveness = " It's not very effective..."
           }
-          setBattleLog(`${enemyPokemon.name} used ${enemyAttack.name}! Dealt ${enemyDamage} damage!${enemyEffectiveness}`)
+          setBattleLog(`${enemyPokie.name} used ${enemyAttack.name}! Dealt ${enemyDamage} damage!${enemyEffectiveness}`)
 
           if (newPlayerHP <= 0 && selectedBooster === 'heart' && !arenaBoosterUsed) {
             setTimeout(() => {
@@ -587,7 +587,7 @@ function App() {
             }, 1000)
           } else if (newPlayerHP <= 0) {
             setTimeout(() => {
-              setBattleLog(`Defeat! ${selectedPokemon.name} fainted!`)
+              setBattleLog(`Defeat! ${selectedPokie.name} fainted!`)
               loseSoundRef.current = new Audio('/lose.mp3')
               loseSoundRef.current.play().catch(e => console.log('Audio play failed:', e))
               setTimeout(() => setScene('defeat'), 2000)
@@ -615,20 +615,20 @@ function App() {
                   <img src="/v-angry-min.png" alt="Enemy" className="trainer-sprite" />
                   <span className="trainer-name">Villain</span>
                 </div>
-                <div className="pokemon-container enemy">
+                <div className="pokie-container enemy">
                   <div className="hp-bar-container">
-                    <div className="pokemon-name">{enemyPokemon.name} <span className="element-badge" style={{ background: ELEMENTS[enemyPokemon.element].color }}>{enemyPokemon.element}</span></div>
+                    <div className="pokie-name">{enemyPokie.name} <span className="element-badge" style={{ background: ELEMENTS[enemyPokie.element].color }}>{enemyPokie.element}</span></div>
                     <div className="hp-bar"><div className="hp-fill enemy-hp" style={{ width: `${enemyHP}%` }}></div></div>
                     <div className="hp-text">{enemyHP}/100 HP</div>
                   </div>
-                  <img src={enemyPokemon.image} alt={enemyPokemon.name} className="pokemon-sprite enemy-pokemon" />
+                  <img src={enemyPokie.image} alt={enemyPokie.name} className="pokie-sprite enemy-pokie" />
                 </div>
               </div>
               <div className="player-side">
-                <div className="pokemon-container player">
-                  <img src={selectedPokemon.image} alt={selectedPokemon.name} className="pokemon-sprite player-pokemon" />
+                <div className="pokie-container player">
+                  <img src={selectedPokie.image} alt={selectedPokie.name} className="pokie-sprite player-pokie" />
                   <div className="hp-bar-container">
-                    <div className="pokemon-name">{selectedPokemon.name} <span className="element-badge" style={{ background: ELEMENTS[selectedPokemon.element].color }}>{selectedPokemon.element}</span></div>
+                    <div className="pokie-name">{selectedPokie.name} <span className="element-badge" style={{ background: ELEMENTS[selectedPokie.element].color }}>{selectedPokie.element}</span></div>
                     <div className="hp-bar"><div className="hp-fill player-hp" style={{ width: `${playerHP}%` }}></div></div>
                     <div className="hp-text">{playerHP}/100 HP</div>
                   </div>
@@ -640,10 +640,10 @@ function App() {
               </div>
             </div>
             <div className="battle-ui">
-              <div className="battle-log">{battleLog || `What will ${selectedPokemon.name} do?`}</div>
+              <div className="battle-log">{battleLog || `What will ${selectedPokie.name} do?`}</div>
               {isPlayerTurn && playerHP > 0 && enemyHP > 0 && (
                 <div className="attack-buttons">
-                  {selectedPokemon.attacks.map((attack, idx) => (
+                  {selectedPokie.attacks.map((attack, idx) => (
                     <button key={idx} className="attack-btn" onClick={() => handleArenaAttack(idx)}>{attack.name}</button>
                   ))}
                 </div>
@@ -660,6 +660,7 @@ function App() {
   if (scene === 'defeat') {
     return (
       <div className="game-screen defeat-scene">
+        <button className="back-button" onClick={goToHome}>←</button>
         <div className="defeat-container">
           <h1 className="defeat-text">You Lost...</h1>
           <p className="defeat-message">Your Pokie was defeated. Better luck next time!</p>
@@ -677,6 +678,7 @@ function App() {
   if (scene === 'screen5') {
     return (
       <div className="game-screen screen5-scene">
+        <button className="back-button" onClick={goToHome}>←</button>
         <div className="victory-container">
           <h1 className="victory-text">Victory!</h1>
           <p className="victory-message">{gameMode === 'arena' ? 'You won the arena battle!' : 'You defeated the villain and saved the day!'}</p>
@@ -717,12 +719,12 @@ function App() {
       const playerAttack = attacks[attackType]
       const newEnemyHP = Math.max(0, enemyHP - playerAttack.damage)
       setEnemyHP(newEnemyHP)
-      setBattleLog(`Rat used ${playerAttack.name}! Dealt ${playerAttack.damage} damage!`)
+      setBattleLog(`Zephyr used ${playerAttack.name}! Dealt ${playerAttack.damage} damage!`)
       setIsPlayerTurn(false)
 
       if (newEnemyHP <= 0) {
         setTimeout(() => {
-          setBattleLog('Victory! Snake fainted!')
+          setBattleLog('Victory! Blazer fainted!')
           const wonSound = new Audio('/won.mp3')
           wonSound.play().catch(e => console.log('Audio play failed:', e))
           setTimeout(() => setScene('screen5'), 2000)
@@ -742,7 +744,7 @@ function App() {
         const enemyAttack = enemyAttacks[Math.floor(Math.random() * 3)]
         const newPlayerHP = Math.max(0, playerHP - enemyAttack.damage)
         setPlayerHP(newPlayerHP)
-        setBattleLog(`Snake used ${enemyAttack.name}! Dealt ${enemyAttack.damage} damage!`)
+        setBattleLog(`Blazer used ${enemyAttack.name}! Dealt ${enemyAttack.damage} damage!`)
 
         if (newPlayerHP <= 0 && choseEma && !heartUsed) {
           setTimeout(() => {
@@ -755,7 +757,7 @@ function App() {
             setTimeout(() => { setShowItemAnimation(false); setBattleLog('Your Pokie is back at full health!'); setTimeout(() => setIsPlayerTurn(true), 1500) }, 3000)
           }, 1000)
         } else if (newPlayerHP <= 0) {
-          setTimeout(() => setBattleLog('Defeat! Rat fainted!'), 1000)
+          setTimeout(() => setBattleLog('Defeat! Zephyr fainted!'), 1000)
         } else {
           setTimeout(() => setIsPlayerTurn(true), 1500)
         }
@@ -788,20 +790,20 @@ function App() {
             <div className="battle-field">
               <div className="enemy-side">
                 <div className="trainer-info"><img src="/v-angry-min.png" alt="Enemy Trainer" className="trainer-sprite" /><span className="trainer-name">Villain</span></div>
-                <div className="pokemon-container enemy">
+                <div className="pokie-container enemy">
                   <div className="hp-bar-container">
-                    <div className="pokemon-name">Snake</div>
+                    <div className="pokie-name">Blazer</div>
                     <div className="hp-bar"><div className="hp-fill enemy-hp" style={{ width: `${enemyHP}%` }}></div></div>
                     <div className="hp-text">{enemyHP}/100 HP</div>
                   </div>
-                  <img src="/snake-min.png" alt="Snake" className="pokemon-sprite enemy-pokemon" />
+                  <img src="/fire2.png" alt="Blazer" className="pokie-sprite enemy-pokie" />
                 </div>
               </div>
               <div className="player-side">
-                <div className="pokemon-container player">
-                  <img src="/rat-min.png" alt="Rat" className="pokemon-sprite player-pokemon" />
+                <div className="pokie-container player">
+                  <img src="/air2.png" alt="Zephyr" className="pokie-sprite player-pokie" />
                   <div className="hp-bar-container">
-                    <div className="pokemon-name">Rat</div>
+                    <div className="pokie-name">Zephyr</div>
                     <div className="hp-bar"><div className="hp-fill player-hp" style={{ width: `${playerHP}%` }}></div></div>
                     <div className="hp-text">{playerHP}/100 HP</div>
                   </div>
@@ -810,7 +812,7 @@ function App() {
               </div>
             </div>
             <div className="battle-ui">
-              <div className="battle-log">{battleLog || 'What will Rat do?'}</div>
+              <div className="battle-log">{battleLog || 'What will Zephyr do?'}</div>
               {isPlayerTurn && playerHP > 0 && enemyHP > 0 && (
                 <div className="attack-buttons">
                   <button className="attack-btn" onClick={() => handleAttack('tackle')}>Tackle</button>

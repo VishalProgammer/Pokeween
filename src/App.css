@@ -332,7 +332,13 @@
 
 /* Ema scene with bg2 background */
 .ema-scene {
-  background-image: url('/bg2-min.png');
+  background-image: url('/d-bg2-min.png');
+}
+
+@media (max-width: 900px) {
+  .ema-scene {
+    background-image: url('/m-bg2-min.png');
+  }
 }
 
 .two-character-scene {
@@ -706,27 +712,27 @@ Top right next button for screen 4 */
   text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
 }
 
-/* Pokemon container */
-.pokemon-container {
+/* Pokie container */
+.pokie-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1vh;
 }
 
-.pokemon-container.enemy {
+.pokie-container.enemy {
   align-items: flex-end;
 }
 
-.pokemon-sprite {
+.pokie-sprite {
   width: 15vw;
   max-width: 180px;
   height: auto;
   image-rendering: pixelated;
-  animation: pokemonFloat 2s ease-in-out infinite;
+  animation: pokieFloat 2s ease-in-out infinite;
 }
 
-@keyframes pokemonFloat {
+@keyframes pokieFloat {
 
   0%,
   100% {
@@ -738,8 +744,8 @@ Top right next button for screen 4 */
   }
 }
 
-.enemy-pokemon {
-  animation: pokemonFloat 2s ease-in-out infinite 1s;
+.enemy-pokie {
+  animation: pokieFloat 2s ease-in-out infinite 1s;
 }
 
 /* HP Bar */
@@ -752,7 +758,7 @@ Top right next button for screen 4 */
   box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.5);
 }
 
-.pokemon-name {
+.pokie-name {
   font-size: 1.3vw;
   font-weight: bold;
   color: #000;
@@ -861,7 +867,7 @@ Top right next button for screen 4 */
     font-size: 3vw;
   }
 
-  .pokemon-sprite {
+  .pokie-sprite {
     width: 30vw;
     max-width: 180px;
   }
@@ -871,7 +877,7 @@ Top right next button for screen 4 */
     padding: 1vh 2vw;
   }
 
-  .pokemon-name {
+  .pokie-name {
     font-size: 2.8vw;
   }
 
@@ -1375,15 +1381,15 @@ animation overlay */
   margin-bottom: 2vh;
 }
 
-/* Pokemon Selection */
-.pokemon-options {
+/* Pokie Selection */
+.pokie-options {
   display: flex;
   justify-content: center;
   gap: 2vw;
   flex-wrap: wrap;
 }
 
-.pokemon-option {
+.pokie-option {
   background: rgba(255, 255, 255, 0.1);
   border: 0.3vw solid #fff;
   border-radius: 1vw;
@@ -1396,19 +1402,19 @@ animation overlay */
   gap: 0.5vh;
 }
 
-.pokemon-option:hover {
+.pokie-option:hover {
   background: rgba(255, 215, 0, 0.3);
   border-color: #ffd700;
   transform: scale(1.08);
 }
 
-.pokemon-option img {
+.pokie-option img {
   width: 8vw;
   max-width: 100px;
   height: auto;
 }
 
-.pokemon-option span {
+.pokie-option span {
   color: #fff;
   font-size: 1.2vw;
   font-weight: bold;
@@ -1645,11 +1651,11 @@ animation overlay */
     font-size: 3vw;
   }
 
-  .pokemon-option img {
+  .pokie-option img {
     width: 18vw;
   }
 
-  .pokemon-option span {
+  .pokie-option span {
     font-size: 3vw;
   }
 
